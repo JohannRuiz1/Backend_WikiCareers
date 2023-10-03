@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
+
 @RestController
 public class ChatController {
     
@@ -28,7 +29,8 @@ public class ChatController {
     @GetMapping("/chat")
     public String chat(@RequestParam String prompt) {
         // create a request
-        ChatRequest request = new ChatRequest(model, prompt);
+        
+        ChatRequest request = new ChatRequest(model, prompt + " salary range one sentence");
         
         // call the API
         ChatResponse response = restTemplate.postForObject(apiUrl, request, ChatResponse.class);
@@ -37,7 +39,16 @@ public class ChatController {
             return "No response";
         }
         
+        ChatRequest request2 = new ChatRequest(model, prompt + " education requirements one sentence");
+        // call the API
+        ChatResponse response2 = restTemplate.postForObject(apiUrl, request2, ChatResponse.class);
+        
+        if (response2 == null || response2.getChoices() == null || response2.getChoices().isEmpty()) {
+            return "No response";
+        }
+
         // return the first response
-        return response.getChoices().get(0).getMessage().getContent();
+        return response.getChoices().get(0).getMessage().getContent() + "\n" +
+                response2.getChoices().get(0).getMessage().getContent();
     }
 }
