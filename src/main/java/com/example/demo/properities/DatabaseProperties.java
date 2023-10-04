@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.properities;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
