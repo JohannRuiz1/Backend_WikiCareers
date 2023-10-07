@@ -27,7 +27,6 @@ import java.sql.DriverManager;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 
 @RestController
 @RequestMapping("/api/careers")
@@ -39,20 +38,13 @@ public class CareerController {
 	@Autowired
 	private DatabaseProperties databaseProperties;
 
-    /*@GetMapping("/careers")
-    public String listAll() {
-        var list = careerRepo.findAll();
-        list.forEach(career -> System.out.println(career));
-        return "success!";
-    }*/
-
 	@GetMapping("/documentation")
 	public String index() {
         // Create swagger page?
 		return "Welcome to the Career API Page! Here's documentation";
 	}
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<Career>> getAllCareers(@RequestParam(required = false) String title){
         try {
             List<Career> careers =  new ArrayList<Career>();
@@ -74,10 +66,10 @@ public class CareerController {
         }
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<String> createCareer(@RequestBody Career career) {
         try {
-            careerRepo.save(new Career(career.getTitle(), career.getDescription(), career.getPay_range_low(), career.getPay_range_high(), career.getRisk_level()));
+            careerRepo.save(career);//new Career(career.getTitle(), career.getDescription(), career.getPay_range_low(), career.getPay_range_high(), career.getRisk_level()));
             return new ResponseEntity<>("Career was created successfully.", HttpStatus.CREATED);
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,7 +77,7 @@ public class CareerController {
         }
     }
 
-	public void connect() {
+	/*public void connect() {
 		Connection connection = null;
 		try{
 			connection = DriverManager.getConnection(databaseProperties.getUrl(), databaseProperties.getUsername(), databaseProperties.getPassword());
@@ -118,6 +110,6 @@ public class CareerController {
                 }
             }
         }
-    }
+    }*/
 
 }

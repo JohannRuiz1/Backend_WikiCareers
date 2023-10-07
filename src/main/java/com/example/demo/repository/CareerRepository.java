@@ -10,9 +10,9 @@ public interface CareerRepository {
 
     int update(Career career);
 
-    Career findById(Long id);
+    Career findById(int id);
 
-    int deleteById(Long id);
+    int deleteById(int id);
 
     List<Career> findAll();
 

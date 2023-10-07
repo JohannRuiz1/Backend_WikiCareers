@@ -9,7 +9,7 @@ CREATE TABLE Careers(
 );
 
 CREATE TABLE Education (
-    education_id INT PRIMARY KEY AUTO_INCREMENT,
+    education_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     career_id INT,
     education_level VARCHAR(255) NOT NULL,
     years_of_schooling INT,

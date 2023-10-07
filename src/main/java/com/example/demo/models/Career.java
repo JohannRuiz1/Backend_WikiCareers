@@ -1,7 +1,5 @@
 package com.example.demo.models;
 
-import java.sql.Timestamp;
-
 public class Career {
     private int career_id;
     private String title; 
@@ -9,20 +7,9 @@ public class Career {
     private double pay_range_low;
     private double pay_range_high;
 	private int risk_level;
-    //private Timestamp created_at;
 
 	public Career(){
 	}
-
-	/*public Career(int id, String title, String description, double pay_range_low, double pay_range_high, int risk_level) {
-		this.id = id;
-		this.title = title;
-		this.description = description;
-		this.pay_range_low = pay_range_low;
-		this.pay_range_high = pay_range_high;
-		this.risk_level = risk_level;
-		this.created_at =  created_at;
-	}*/
 
 	public Career(String title, String description, double pay_range_low, double pay_range_high, int risk_level) {
 		this.title = title;
@@ -30,18 +17,17 @@ public class Career {
 		this.pay_range_low = pay_range_low;
 		this.pay_range_high = pay_range_high;
 		this.risk_level = risk_level;
-		//this.created_at =  created_at;
 	}
 
 
-	public Career(int career_id, String title, String description, double pay_range_low, double pay_range_high, int risk_level, Timestamp created_at) {
+	public Career(int career_id, String title, String description, double pay_range_low, double pay_range_high, int risk_level) {
 		this(title, description, pay_range_low, pay_range_high, risk_level);
 		this.career_id =  career_id;
 	}
 
 	@Override
 	public String toString(){
-		return "Career [id=" + career_id + ", title=" + title + ", pay_range_low=" + pay_range_low + ", pay_range_high=" + pay_range_high + ", risk_level=" + risk_level + "]";
+		return "Career [career_id=" + career_id + ", title=" + title + ", pay_range_low=" + pay_range_low + ", pay_range_high=" + pay_range_high + ", risk_level=" + risk_level + "]";
 	}
 
 	public long getCareer_id() {
@@ -92,12 +78,5 @@ public class Career {
 		this.risk_level = risk_level;
 	}
 
-	/*public Timestamp getCreated_at() {
-		return this.created_at;
-	}
-
-	public void setCreated_at(Timestamp created_at) {
-		this.created_at = created_at;
-	}*/
 
 }

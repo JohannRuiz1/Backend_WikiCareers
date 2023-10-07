@@ -24,14 +24,14 @@ public class JbdcCareerRepository implements CareerRepository {
 
     @Override
     public int update(Career career) {
-        return jdbcTemplate.update("UPDATE Careers SET title=?, description=?, pay_range_low=?, pay_range_high=?, risk_level=? WHERE id=?",
+        return jdbcTemplate.update("UPDATE Careers SET title=?, description=?, pay_range_low=?, pay_range_high=?, risk_level=? WHERE career_id=?",
         new Object[] { career.getTitle(), career.getDescription(), career.getPay_range_low(), career.getPay_range_high(), career.getRisk_level(), career.getCareer_id()});
    }
 
     @Override
-    public Career findById(Long id) {
+    public Career findById(int id) {
         try {
-            Career career = jdbcTemplate.queryForObject("SELECT * FROM careers WHERE id=?",
+            Career career = jdbcTemplate.queryForObject("SELECT * FROM careers WHERE career_id=?",
                 BeanPropertyRowMapper.newInstance(Career.class), id);
             return career;
         } catch (IncorrectResultSizeDataAccessException e) {
@@ -40,18 +40,18 @@ public class JbdcCareerRepository implements CareerRepository {
     }
 
     @Override
-    public int deleteById(Long id) {
-        return jdbcTemplate.update("DELETE FROM careers WHERE id=?", id);
+    public int deleteById(int id) {
+        return jdbcTemplate.update("DELETE FROM CAREERS WHERE id=?", id);
     }
 
     @Override
     public List<Career> findAll() {
-        return jdbcTemplate.query("SELECT * from careers", BeanPropertyRowMapper.newInstance(Career.class));
+        return jdbcTemplate.query("SELECT * from CAREERS", BeanPropertyRowMapper.newInstance(Career.class));
     }
 
     @Override
     public List<Career> findByTitleContaining(String title) {
-      String q = "SELECT * from careers WHERE title ILIKE '%" + title + "%'";
+      String q = "SELECT * from CAREERS WHERE title ILIKE '%" + title + "%'";
   
       return jdbcTemplate.query(q, BeanPropertyRowMapper.newInstance(Career.class));
     }
