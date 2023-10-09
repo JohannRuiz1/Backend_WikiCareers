@@ -30,7 +30,7 @@ public class Career {
 		return "Career [career_id=" + career_id + ", title=" + title + ", pay_range_low=" + pay_range_low + ", pay_range_high=" + pay_range_high + ", risk_level=" + risk_level + "]";
 	}
 
-	public long getCareer_id() {
+	public int getCareer_id() {
 		return this.career_id;
 	}
 

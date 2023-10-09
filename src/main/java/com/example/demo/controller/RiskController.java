@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.models.Education;
 import com.example.demo.models.Risk;
 import com.example.demo.repository.RiskRepository;
 
@@ -36,6 +37,19 @@ public class RiskController {
 
     @GetMapping("")
     public ResponseEntity<List <Risk>> getAllRisks(){
-
+        try {
+            List<Risk> risks =  new ArrayList<Risk>();
+            
+            riskRepo.findAll().forEach(risks::add);
+        
+            if (risks.isEmpty()){
+                return new ResponseEntity<List<Risk>>(HttpStatus.NO_CONTENT);
+            }
+            else{
+                return new ResponseEntity<>(risks, HttpStatus.OK);
+            }
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
