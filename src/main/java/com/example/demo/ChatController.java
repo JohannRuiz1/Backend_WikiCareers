@@ -41,6 +41,13 @@ public class ChatController {
 
     @Autowired
     private EducationRepository educationRepo;
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/chatDB")
+    public JsonResponse chatInDB(@RequestParam String prompt) {
+        
+        return null;
+    }
     
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/chat")

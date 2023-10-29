@@ -77,41 +77,5 @@ public class CareerController {
         }
     }
 
-    
-
-	/*public void connect() {
-		Connection connection = null;
-		try{
-			connection = DriverManager.getConnection(databaseProperties.getUrl(), databaseProperties.getUsername(), databaseProperties.getPassword());
-			       
-            // Get database metadata
-            DatabaseMetaData metaData = connection.getMetaData();
-
-			// TODO: Put in the application properties
-            String catalog = null;
-            String schemaPattern = "CAREERINFO"; 
-
-            // Get a ResultSet of table names using the metadata
-            ResultSet tables = metaData.getTables(catalog, schemaPattern, "%", new String[] { "TABLE" });
-
-            // Iterate through the ResultSet to print the table names
-            while (tables.next()) {
-                String tableName = tables.getString("TABLE_NAME");
-                System.out.println("Table Name: " + tableName);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            // Close the database connection
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }*/
 
 }
