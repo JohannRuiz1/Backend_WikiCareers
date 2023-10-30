@@ -95,36 +95,48 @@ public class ChatController {
     
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/chat")
-    public ChatTransform chat(@RequestParam String prompt) {
-        
-        // create a request
-        ChatRequest request = new ChatRequest(model, prompt + " salary range one sentence");
-        
-        // call the API
-        ChatResponse response = restTemplate.postForObject(apiUrl, request, ChatResponse.class);
-        
-        if (response == null || response.getChoices() == null || response.getChoices().isEmpty()) {
-            return new ChatTransform("No response", "no response");
+    public String chat(@RequestParam String prompt) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try{
+            // TODO: CHANGE SAMPLE DATA FOR ALL THE TITLES TO BE LOWERCASE
+            CareerInfo output = careerRepo.findCareerInfoByTitle(prompt);
+            if(output != null){
+                return objectMapper.writeValueAsString(output);
+            }
+            // NORMALIZE INPUT
+            prompt = prompt.toLowerCase();
+
+            // create a request
+            ChatRequest request = new ChatRequest(model, prompt + " salary range one sentence");
+            
+            // call the API
+            ChatResponse response = restTemplate.postForObject(apiUrl, request, ChatResponse.class);
+            
+            if (response == null || response.getChoices() == null || response.getChoices().isEmpty()) {
+                return objectMapper.writeValueAsString(new ChatTransform("No response", "no response"));
+            }
+            
+            ChatRequest request2 = new ChatRequest(model, prompt + " education requirements one sentence");
+            
+            // call the API
+            ChatResponse response2 = restTemplate.postForObject(apiUrl, request2, ChatResponse.class);
+            
+            if (response2 == null || response2.getChoices() == null || response2.getChoices().isEmpty()) {
+                return objectMapper.writeValueAsString(new ChatTransform("No response", "no response"));
+            }
+
+
+            ChatTransform json = new ChatTransform(
+                    response.getChoices().get(0).getMessage().getContent(),
+                    response2.getChoices().get(0).getMessage().getContent()
+            );
+
+            parseInformationToDatabase(json, prompt);
+
+            return objectMapper.writeValueAsString(careerRepo.findCareerInfoByTitle(prompt));
+        } catch (Exception e) {
+            return "Dang That's Crazy";
         }
-        
-        ChatRequest request2 = new ChatRequest(model, prompt + " education requirements one sentence");
-        
-        // call the API
-        ChatResponse response2 = restTemplate.postForObject(apiUrl, request2, ChatResponse.class);
-        
-        if (response2 == null || response2.getChoices() == null || response2.getChoices().isEmpty()) {
-            return new ChatTransform("No response", "no response");
-        }
-
-
-        ChatTransform json = new ChatTransform(
-                response.getChoices().get(0).getMessage().getContent(),
-                response2.getChoices().get(0).getMessage().getContent()
-        );
-        parseInformationToDatabase(json, prompt);
-        // create and return a JSON response objecT
-
-        return json;
     }
     
     private void parseInformationToDatabase(ChatTransform input, String prompt){
