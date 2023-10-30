@@ -19,8 +19,12 @@ import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.models.Career;
 import com.example.demo.models.Education;
+import com.example.demo.models.CareerInfo;
 import com.example.demo.repository.CareerRepository;
 import com.example.demo.repository.EducationRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 
 @RestController
@@ -44,10 +48,50 @@ public class ChatController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/chatDB")
-    public JsonResponse chatInDB(@RequestParam String prompt) {
+    public String chatInDB(@RequestParam String name) {
+        // Create an ObjectMapper
+        ObjectMapper objectMapper = new ObjectMapper();
         
-        return null;
+        Career career = careerRepo.findByName(name);
+
+        if(career == null){
+            return "No object in database";
+        }
+        String json = "";
+
+        try {
+            // Convert the object to JSON
+            json = objectMapper.writeValueAsString(career);
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return json;
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/careerInfo")
+    public String careerInfo(@RequestParam String name) {
+        // Create an ObjectMapper
+        ObjectMapper objectMapper = new ObjectMapper();
+        
+        CareerInfo career = careerRepo.findCareerInfoByTitle(name);
+        
+        if(career == null){
+            return "No object in database";
+        }
+        String json = "";
+
+        try {
+            // Convert the object to JSON
+            json = objectMapper.writeValueAsString(career);
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
+
     
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/chat")

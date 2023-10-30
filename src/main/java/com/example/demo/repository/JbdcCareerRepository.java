@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.models.Career;
+import com.example.demo.models.CareerInfo;
 
 @Repository
 public class JbdcCareerRepository implements CareerRepository {
@@ -54,6 +55,35 @@ public class JbdcCareerRepository implements CareerRepository {
       String q = "SELECT * from CAREERS WHERE title ILIKE '%" + title + "%'";
   
       return jdbcTemplate.query(q, BeanPropertyRowMapper.newInstance(Career.class));
+    }
+
+    @Override
+    public Career findByName(String name) {
+        String q = "SELECT * FROM CAREERS WHERE title = '"+name+"'";
+
+        List<Career> result = jdbcTemplate.query(q, BeanPropertyRowMapper.newInstance(Career.class));
+
+        if(result.isEmpty()){
+            return null;
+        }
+        
+        return result.get(0);
+    }
+
+
+    public CareerInfo findCareerInfoByTitle(String title) {
+        String q = "SELECT C.title AS career_title, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level " +
+                     "FROM Careers C " +
+                     "LEFT JOIN Education E ON C.career_id = E.career_id " +
+                     "LEFT JOIN Risks R ON C.career_id = R.career_id " +
+                     "WHERE C.title = '"+title+"'";
+
+        List<CareerInfo> result = jdbcTemplate.query(q, BeanPropertyRowMapper.newInstance(CareerInfo.class));
+        if(result.isEmpty()){
+            return null;
+        }
+
+        return result.get(0);
     }
     
 }
