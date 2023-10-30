@@ -29,9 +29,20 @@ public class JbdcEducationRepository implements EducationRepository {
    }
 
     @Override
-    public Education findById(int id) {
+    public Education findByEducationId(int id) {
         try {
             Education education = jdbcTemplate.queryForObject("SELECT * FROM EDUCATION WHERE education_id=?",
+                BeanPropertyRowMapper.newInstance(Education.class), id);
+            return education;
+        } catch (IncorrectResultSizeDataAccessException e) {
+            return null;
+        } 
+    }
+
+    @Override
+    public Education findByCareerId(int id) {
+        try {
+            Education education = jdbcTemplate.queryForObject("SELECT * FROM EDUCATION WHERE career_id=?",
                 BeanPropertyRowMapper.newInstance(Education.class), id);
             return education;
         } catch (IncorrectResultSizeDataAccessException e) {

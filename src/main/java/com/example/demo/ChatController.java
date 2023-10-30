@@ -19,9 +19,11 @@ import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.models.Career;
 import com.example.demo.models.Education;
+import com.example.demo.models.Risk;
 import com.example.demo.models.CareerInfo;
 import com.example.demo.repository.CareerRepository;
 import com.example.demo.repository.EducationRepository;
+import com.example.demo.repository.RiskRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -45,6 +47,9 @@ public class ChatController {
 
     @Autowired
     private EducationRepository educationRepo;
+
+    @Autowired
+    private RiskRepository riskRepo;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/chatDB")
@@ -107,7 +112,7 @@ public class ChatController {
             prompt = prompt.toLowerCase();
 
             // create a request
-            ChatRequest request = new ChatRequest(model, prompt + " salary range one sentence");
+            ChatRequest request = new ChatRequest(model, prompt + " salary range one sentence with numbers");
             
             // call the API
             ChatResponse response = restTemplate.postForObject(apiUrl, request, ChatResponse.class);
@@ -135,7 +140,7 @@ public class ChatController {
 
             return objectMapper.writeValueAsString(careerRepo.findCareerInfoByTitle(prompt));
         } catch (Exception e) {
-            return "Dang That's Crazy";
+            return e.getMessage();
         }
     }
     
@@ -170,8 +175,8 @@ public class ChatController {
         Career career =  new Career(prompt, "ParsingDescription",lSal, hSal, 0);
         careerRepo.save(career);
         
-        List<Career> careers = careerRepo.findByTitleContaining(prompt);
-        int careerId = careers.get(0).getCareer_id();
+        career = careerRepo.findByName(prompt);
+        int careerId = career.getCareer_id();
 
         String educationRequirements = input.getEducationRequirements();
 
@@ -186,6 +191,10 @@ public class ChatController {
 
         Education education = new Education(careerId, educationRequirements, 4, "Education Description");
         educationRepo.save(education);
+
+        
+        Risk risk = new Risk(careerId, "I love Mike", 9999);
+        riskRepo.save(risk);
         
     }
 }

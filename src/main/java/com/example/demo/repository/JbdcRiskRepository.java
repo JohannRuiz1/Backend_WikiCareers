@@ -18,7 +18,7 @@ public class JbdcRiskRepository implements RiskRepository{
 
     @Override
     public int save(Risk risk) {
-        return jdbcTemplate.update("INSERT INTO RISKS(career_id, risk_description, risk_level VALUES(?,?,?))",
+        return jdbcTemplate.update("INSERT INTO RISKS (career_id, risk_description, risk_level) VALUES(?,?,?)",
         new Object[] {risk.getCareerId(), risk.getRiskDescription(), risk.getRiskLevel()});
     }
 

@@ -10,7 +10,9 @@ public interface EducationRepository {
 
     int update(Education education);
 
-    Education findById(int id);
+    Education findByEducationId(int id);
+
+    Education findByCareerId(int id);
 
     int deleteById(int id);
 
