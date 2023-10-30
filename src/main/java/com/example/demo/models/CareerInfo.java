@@ -1,8 +1,7 @@
 package com.example.demo.models;
 
 public class CareerInfo {
-    private int careerId;
-    private String careerTitle;
+    private String title;
     private String description;
     private double payRangeLow;
     private double payRangeHigh;
@@ -12,22 +11,13 @@ public class CareerInfo {
     private String educationDescription;
     private String riskDescription;
 
-    
 
-    public int getCareerId() {
-        return this.careerId;
+    public String getTitle() {
+        return this.title;
     }
 
-    public void setCareerId(int careerId) {
-        this.careerId = careerId;
-    }
-
-    public String getCareerTitle() {
-        return this.careerTitle;
-    }
-
-    public void setCareerTitle(String careerTitle) {
-        this.careerTitle = careerTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {

@@ -1,16 +1,16 @@
 package com.example.demo;
 
-public class JsonResponse {
+public class ChatTransform {
     private String salaryRange;
     private String educationRequirements;
 
     // Constructors, getters, and setters
 
-    public JsonResponse() {
+    public ChatTransform() {
         // Default constructor required for serialization
     }
 
-    public JsonResponse(String salaryRange, String educationRequirements) {
+    public ChatTransform(String salaryRange, String educationRequirements) {
         this.salaryRange = salaryRange;
         this.educationRequirements = educationRequirements;
     }

@@ -95,7 +95,8 @@ public class ChatController {
     
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/chat")
-    public JsonResponse chat(@RequestParam String prompt) {
+    public ChatTransform chat(@RequestParam String prompt) {
+        
         // create a request
         ChatRequest request = new ChatRequest(model, prompt + " salary range one sentence");
         
@@ -103,7 +104,7 @@ public class ChatController {
         ChatResponse response = restTemplate.postForObject(apiUrl, request, ChatResponse.class);
         
         if (response == null || response.getChoices() == null || response.getChoices().isEmpty()) {
-            return new JsonResponse("No response", "no response");
+            return new ChatTransform("No response", "no response");
         }
         
         ChatRequest request2 = new ChatRequest(model, prompt + " education requirements one sentence");
@@ -112,11 +113,11 @@ public class ChatController {
         ChatResponse response2 = restTemplate.postForObject(apiUrl, request2, ChatResponse.class);
         
         if (response2 == null || response2.getChoices() == null || response2.getChoices().isEmpty()) {
-            return new JsonResponse("No response", "no response");
+            return new ChatTransform("No response", "no response");
         }
 
 
-        JsonResponse json = new JsonResponse(
+        ChatTransform json = new ChatTransform(
                 response.getChoices().get(0).getMessage().getContent(),
                 response2.getChoices().get(0).getMessage().getContent()
         );
@@ -126,7 +127,7 @@ public class ChatController {
         return json;
     }
     
-    private void parseInformationToDatabase(JsonResponse input, String prompt){
+    private void parseInformationToDatabase(ChatTransform input, String prompt){
         String salaryRange = input.getSalaryRange();
 
         

@@ -72,7 +72,7 @@ public class JbdcCareerRepository implements CareerRepository {
 
 
     public CareerInfo findCareerInfoByTitle(String title) {
-        String q = "SELECT C.title AS career_title, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level " +
+        String q = "SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level " +
                      "FROM Careers C " +
                      "LEFT JOIN Education E ON C.career_id = E.career_id " +
                      "LEFT JOIN Risks R ON C.career_id = R.career_id " +
