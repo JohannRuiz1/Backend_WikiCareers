@@ -1,4 +1,4 @@
-CREATE TABLE Careers(
+CREATE TABLE Careers (
     career_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
     description TEXT,
@@ -14,7 +14,7 @@ CREATE TABLE Education (
     education_level VARCHAR(255) NOT NULL,
     years_of_schooling INT,
     education_description TEXT,
-    FOREIGN KEY (career_id) REFERENCES Careers(career_id)
+    FOREIGN KEY (career_id) REFERENCES Careers(career_id) ON DELETE CASCADE
 );
 
 CREATE TABLE Risks (
@@ -22,5 +22,5 @@ CREATE TABLE Risks (
     career_id INT,
     risk_description TEXT,
     risk_level INT,
-    FOREIGN KEY (career_id) REFERENCES Careers(career_id)
+    FOREIGN KEY (career_id) REFERENCES Careers(career_id) ON DELETE CASCADE
 );
