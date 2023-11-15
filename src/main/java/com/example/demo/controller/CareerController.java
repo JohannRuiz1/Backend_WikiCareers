@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,60 +21,111 @@ import com.example.demo.properities.DatabaseProperties;
 import com.example.demo.repository.*;
 import com.example.demo.models.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.DatabaseMetaData;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-
+@CrossOrigin(origins = "http://localhost:3200")
 @RestController
 @RequestMapping("/api/careers")
 public class CareerController {
 
-    @Autowired
-    private CareerRepository careerRepo;
+  @Autowired
+  private CareerRepository careerRepo;
 
-	@Autowired
-	private DatabaseProperties databaseProperties;
+  @GetMapping("")
+  public ResponseEntity<List<Career>> getAllCareers(@RequestParam(required = false) String title) {
+    try {
+      List<Career> careers = new ArrayList<Career>();
 
-	@GetMapping("/documentation")
-	public String index() {
-        // Create swagger page?
-		return "Welcome to the Career API Page! Here's documentation";
-	}
+      careerRepo.findAll().forEach(careers::add);
 
-    @GetMapping("")
-    public ResponseEntity<List<Career>> getAllCareers(@RequestParam(required = false) String title){
-        try {
-            List<Career> careers =  new ArrayList<Career>();
-            if (title == null){
-                careerRepo.findAll().forEach(careers::add);
-            }
-            else{
-                careerRepo.findByTitleContaining(title).forEach(careers::add); 
-            }
+      if (careers.isEmpty()) {
+        return new ResponseEntity<List<Career>>(HttpStatus.NO_CONTENT);
+      } else {
+        return new ResponseEntity<>(careers, HttpStatus.OK);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
 
-            if (careers.isEmpty()){
-                return new ResponseEntity<List<Career>>(HttpStatus.NO_CONTENT);
-            }
-            else{
-                return new ResponseEntity<>(careers, HttpStatus.OK);
-            }
-        } catch (Exception e){
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+  @PostMapping("")
+  public ResponseEntity<String> createCareer(@RequestBody Career career) {
+    try {
+      careerRepo.save(career);
+      return new ResponseEntity<>("Created Career Successfully", HttpStatus.CREATED);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @GetMapping("/id/{id}")
+  public ResponseEntity<Career> getCareerById(@PathVariable("id") int id) {
+    try {
+      Career career = careerRepo.findById(id);
+
+      if (career != null) {
+        return new ResponseEntity<>(career, HttpStatus.OK);
+      } else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @PostMapping("")
-    public ResponseEntity<String> createCareer(@RequestBody Career career) {
-        try {
-            careerRepo.save(career);//new Career(career.getTitle(), career.getDescription(), career.getPay_range_low(), career.getPay_range_high(), career.getRisk_level()));
-            return new ResponseEntity<>("Career was created successfully.", HttpStatus.CREATED);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+  }
 
+  @GetMapping("/title/{title}")
+  public ResponseEntity<Career> getCareerByTitle(@PathVariable("title") String title) {
+    try {
+      Career career = careerRepo.findByName(title);
+
+      if (career != null) {
+        return new ResponseEntity<>(career, HttpStatus.OK);
+      } else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @PutMapping("/id/{id}")
+  public ResponseEntity<String> updateCareer(@PathVariable("id") int id, @RequestBody Career career) {
+    try {
+      Career _career = careerRepo.findById(id);
+
+      if (_career != null) {
+        _career.setTitle(career.getTitle());
+        _career.setDescription(career.getDescription());
+        _career.setPay_range_low(career.getPay_range_low());
+        _career.setPay_range_high(career.getPay_range_high());
+        _career.setRisk_level(career.getRisk_level());
+
+        careerRepo.update(_career);
+        return new ResponseEntity<>("Career was updated successfully.", HttpStatus.OK);
+      } else {
+        return new ResponseEntity<>("Cannot find Career with id=" + id, HttpStatus.NOT_FOUND);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new ResponseEntity<>("Cannot delete tutorial.", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @DeleteMapping("/id/{id}")
+  public ResponseEntity<String> deleteCareer(@PathVariable("id") int id) {
+    try {
+      int result = careerRepo.deleteById(id);
+      if (result == 0) {
+        return new ResponseEntity<>("Cannot find Career with id=" + id, HttpStatus.OK);
+      }
+      return new ResponseEntity<>("Career was deleted successfully.", HttpStatus.OK);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new ResponseEntity<>("Cannot delete tutorial.", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
 
 }

@@ -103,13 +103,15 @@ public class ChatController {
     public String chat(@RequestParam String prompt) {
         ObjectMapper objectMapper = new ObjectMapper();
         try{
+            // NORMALIZE INPUT
+            prompt = prompt.toLowerCase();
+            
             // TODO: CHANGE SAMPLE DATA FOR ALL THE TITLES TO BE LOWERCASE
             CareerInfo output = careerRepo.findCareerInfoByTitle(prompt);
             if(output != null){
                 return objectMapper.writeValueAsString(output);
             }
-            // NORMALIZE INPUT
-            prompt = prompt.toLowerCase();
+            
 
             // create a request
             ChatRequest request = new ChatRequest(model, prompt + " salary range one sentence with numbers");

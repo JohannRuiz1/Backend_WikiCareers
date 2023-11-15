@@ -29,7 +29,7 @@ public class JbdcRiskRepository implements RiskRepository{
     }
 
     @Override
-    public Risk findById(int id) {
+    public Risk findByRiskId(int id) {
         try {
             Risk risk = jdbcTemplate.queryForObject("SELECT * FROM RISKS WHERE risk_id=?",
                 BeanPropertyRowMapper.newInstance(Risk.class), id);

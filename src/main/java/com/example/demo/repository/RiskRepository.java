@@ -11,7 +11,7 @@ public interface RiskRepository {
 
     int update(Risk risk);
 
-    Risk findById(int id);
+    Risk findByRiskId(int id);
 
     int deleteById(int id);
     
