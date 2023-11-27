@@ -1,13 +1,8 @@
 package com.example.demo;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -106,7 +101,6 @@ public class ChatController {
             // NORMALIZE INPUT
             prompt = prompt.toLowerCase();
             
-            // TODO: CHANGE SAMPLE DATA FOR ALL THE TITLES TO BE LOWERCASE
             CareerInfo output = careerRepo.findCareerInfoByTitle(prompt);
             if(output != null){
                 return objectMapper.writeValueAsString(output);
