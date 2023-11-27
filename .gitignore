@@ -32,4 +32,4 @@ build/
 .vscode/
 
 ### H2 Specific Files ###
-*.mv.db
+test.db.mv.db
