@@ -120,7 +120,7 @@ public class ChatController {
             ChatResponse response = restTemplate.postForObject(apiUrl, request, ChatResponse.class);
             
             if (response == null || response.getChoices() == null || response.getChoices().isEmpty()) {
-                return objectMapper.writeValueAsString(new ChatTransform("No response", "no response"));
+                return objectMapper.writeValueAsString(new ChatTransform("No response", "no response", "no response", "no response"));
             }
             
             ChatRequest request2 = new ChatRequest(model, prompt + " education requirements one sentence");
@@ -129,13 +129,37 @@ public class ChatController {
             ChatResponse response2 = restTemplate.postForObject(apiUrl, request2, ChatResponse.class);
             
             if (response2 == null || response2.getChoices() == null || response2.getChoices().isEmpty()) {
-                return objectMapper.writeValueAsString(new ChatTransform("No response", "no response"));
+                return objectMapper.writeValueAsString(new ChatTransform("No response", "no response", "no response", "no response"));
+            }
+
+            
+            ChatRequest request3 = new ChatRequest(model, "give a one sentence description about what " +
+            prompt);
+            
+            // call the API
+            ChatResponse response3 = restTemplate.postForObject(apiUrl, request3, ChatResponse.class);
+            
+            if (response3 == null || response3.getChoices() == null || response3.getChoices().isEmpty()) {
+                return objectMapper.writeValueAsString(new ChatTransform("No response", "no response", "no response", "no response"));
             }
 
 
+
+            ChatRequest request4 = new ChatRequest(model, "give one sentence about the job security of  a" +
+            prompt + "'s do");
+            
+            // call the API
+            ChatResponse response4 = restTemplate.postForObject(apiUrl, request4, ChatResponse.class);
+            
+            if (response4 == null || response4.getChoices() == null || response4.getChoices().isEmpty()) {
+                return objectMapper.writeValueAsString(new ChatTransform("No response", "no response", "no response", "no response"));
+            }
+
             ChatTransform json = new ChatTransform(
                     response.getChoices().get(0).getMessage().getContent(),
-                    response2.getChoices().get(0).getMessage().getContent()
+                    response2.getChoices().get(0).getMessage().getContent(),
+                    response3.getChoices().get(0).getMessage().getContent(),
+                    response4.getChoices().get(0).getMessage().getContent()
             );
 
             parseInformationToDatabase(json, prompt);
@@ -157,6 +181,8 @@ public class ChatController {
         String highSalary = "";
         double lSal = 0.0;
         double hSal = 0.0;
+        String description = input.getDescription();
+        String riskDescription = input.getRiskDescription();
         if (matcher.find()) {
             lowSalary = matcher.group(1);
             highSalary = matcher.group(3);
@@ -174,7 +200,7 @@ public class ChatController {
             System.out.println("Dang that's crazy");
         }
         
-        Career career =  new Career(prompt, "ParsingDescription",lSal, hSal, 0);
+        Career career =  new Career(prompt, description,lSal, hSal, 0);
         careerRepo.save(career);
         
         career = careerRepo.findByName(prompt);
@@ -195,7 +221,7 @@ public class ChatController {
         educationRepo.save(education);
 
         
-        Risk risk = new Risk(careerId, "I love Mike", 9999);
+        Risk risk = new Risk(careerId, riskDescription, 9999);
         riskRepo.save(risk);
         
     }
