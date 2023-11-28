@@ -14,13 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.repository.*;
 import com.example.demo.models.*;
 
-@CrossOrigin(origins = "http://localhost:3200")
+@CrossOrigin(origins = {"http://localhost:3200", "http://localhost:3000"})
 @RestController
 @RequestMapping("/api/careers")
 public class CareerController {
@@ -28,8 +27,24 @@ public class CareerController {
   @Autowired
   private CareerRepository careerRepo;
 
+  @GetMapping("/fullInfo/{name}")
+  public ResponseEntity<CareerInfo> careerInfo(@PathVariable String name) {
+      try {
+        CareerInfo career = careerRepo.findCareerInfoByTitle(name);
+        if(career == null){
+          return new ResponseEntity<CareerInfo>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(career, HttpStatus.OK);
+
+      } catch (Exception e) {
+        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+  }
+
+
   @GetMapping("")
-  public ResponseEntity<List<Career>> getAllCareers(@RequestParam(required = false) String title) {
+  public ResponseEntity<List<Career>> getAllCareers() {
     try {
       List<Career> careers = new ArrayList<Career>();
 

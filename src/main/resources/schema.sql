@@ -1,4 +1,4 @@
-CREATE TABLE Careers (
+CREATE TABLE IF NOT EXISTS Careers (
     career_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
     description TEXT,
@@ -8,7 +8,7 @@ CREATE TABLE Careers (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE Education (
+CREATE TABLE IF NOT EXISTS Education (
     education_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     career_id INT,
     education_level VARCHAR(255) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE Education (
     FOREIGN KEY (career_id) REFERENCES Careers(career_id) ON DELETE CASCADE
 );
 
-CREATE TABLE Risks (
+CREATE TABLE IF NOT EXISTS Risks (
     risk_id INT PRIMARY KEY AUTO_INCREMENT,
     career_id INT,
     risk_description TEXT,

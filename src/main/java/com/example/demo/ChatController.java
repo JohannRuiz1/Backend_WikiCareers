@@ -2,6 +2,8 @@ package com.example.demo;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,7 +11,6 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.models.Career;
@@ -19,11 +20,11 @@ import com.example.demo.models.CareerInfo;
 import com.example.demo.repository.CareerRepository;
 import com.example.demo.repository.EducationRepository;
 import com.example.demo.repository.RiskRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
-
+@CrossOrigin(origins = {"http://localhost:3200", "http://localhost:3000"})
+@RequestMapping("/api/chat")
 @RestController
 public class ChatController {
     
@@ -46,56 +47,8 @@ public class ChatController {
     @Autowired
     private RiskRepository riskRepo;
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/chatDB")
-    public String chatInDB(@RequestParam String name) {
-        // Create an ObjectMapper
-        ObjectMapper objectMapper = new ObjectMapper();
-        
-        Career career = careerRepo.findByName(name);
-
-        if(career == null){
-            return "No object in database";
-        }
-        String json = "";
-
-        try {
-            // Convert the object to JSON
-            json = objectMapper.writeValueAsString(career);
-
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return json;
-    }
-
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/careerInfo")
-    public String careerInfo(@RequestParam String name) {
-        // Create an ObjectMapper
-        ObjectMapper objectMapper = new ObjectMapper();
-        
-        CareerInfo career = careerRepo.findCareerInfoByTitle(name);
-        
-        if(career == null){
-            return "No object in database";
-        }
-        String json = "";
-
-        try {
-            // Convert the object to JSON
-            json = objectMapper.writeValueAsString(career);
-
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return json;
-    }
-
-    
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/chat")
-    public String chat(@RequestParam String prompt) {
+    @GetMapping("/{prompt}")
+    public String chat(@PathVariable String prompt) {
         ObjectMapper objectMapper = new ObjectMapper();
         try{
             // NORMALIZE INPUT
@@ -106,7 +59,6 @@ public class ChatController {
                 return objectMapper.writeValueAsString(output);
             }
             
-
             // create a request
             ChatRequest request = new ChatRequest(model, prompt + " salary range one sentence with numbers");
             
