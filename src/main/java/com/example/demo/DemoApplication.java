@@ -1,3 +1,8 @@
+
+/*  DemoApplication.java WikiCareers (Mike Lundquist) Virginia Tech
+used to create our application
+December 2023
+*/ 
 package com.example.demo;
 
 import org.springframework.boot.SpringApplication;

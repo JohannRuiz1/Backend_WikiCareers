@@ -1,3 +1,7 @@
+/*  Message.java WikiCareers (Mike Lundquist) Virginia Tech
+used in the classes that work with the API
+December 2023
+*/ 
 package com.example.demo;
 
 public class Message {

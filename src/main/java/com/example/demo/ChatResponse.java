@@ -1,3 +1,7 @@
+/*  ChatResponse.java WikiCareers (Mike Lundquist) Virginia Tech
+class used in chatcontroller.java as a response from the api
+December 2023
+*/ 
 package com.example.demo;
 import java.util.List;
 public class ChatResponse {

@@ -1,3 +1,7 @@
+/*  chatTransform.java WikiCareers (Mike Lundquist) Virginia Tech
+used to turn the responses from API into a format for the database
+December 2023
+*/ 
 package com.example.demo;
 
 public class ChatTransform {

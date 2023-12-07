@@ -1,3 +1,7 @@
+/*  DatabaseProperties.java WikiCareers (Johann Ruiz) Virginia Tech
+<description>
+December 2023
+*/ 
 package com.example.demo.properities;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

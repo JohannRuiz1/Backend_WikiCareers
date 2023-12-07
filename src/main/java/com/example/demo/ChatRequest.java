@@ -1,4 +1,7 @@
-
+/*  ChatRequest.java WikiCareers (Mike Lundquist) Virginia Tech
+class used in chatcontroller.java for the request to api
+December 2023
+*/ 
 package com.example.demo;
 import java.util.ArrayList;
 import java.util.List;

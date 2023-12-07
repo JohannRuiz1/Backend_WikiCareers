@@ -1,3 +1,10 @@
+/*  ChatController.java WikiCareers (Mike Lundquist) Virginia Tech
+This file queries our API and database in order to get
+the information queried from the user.
+December 2023
+*/ 
+
+
 package com.example.demo;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -91,8 +98,8 @@ public class ChatController {
 
 
 
-            ChatRequest request4 = new ChatRequest(model, "give one sentence about the job security of  a" +
-            prompt + "'s do");
+            ChatRequest request4 = new ChatRequest(model, "give one sentence about the job security of a " +
+            prompt);
             
             // call the API
             ChatResponse response4 = restTemplate.postForObject(apiUrl, request4, ChatResponse.class);
@@ -119,7 +126,7 @@ public class ChatController {
     private void parseInformationToDatabase(ChatTransform input, String prompt){
         String salaryRange = input.getSalaryRange();
 
-        
+        // we need to find the average salary given from the API request
         String salaryPattern = "\\$([0-9,]+) (and|to) \\$([0-9,]+)";
         Pattern pattern = Pattern.compile(salaryPattern);
         Matcher matcher = pattern.matcher(salaryRange);
@@ -162,7 +169,8 @@ public class ChatController {
             String requirementsText = matcher.group(2);
             System.out.println("Education Requirements: " + requirementsText);
         }
-
+        
+        // store in database
         Education education = new Education(careerId, educationRequirements, 4, "Education Description");
         educationRepo.save(education);
 

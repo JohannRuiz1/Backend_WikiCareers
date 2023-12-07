@@ -1,3 +1,7 @@
+/*  OpenAIREstTemplate.java WikiCareers (Mike Lundquist) Virginia Tech
+Makes sure the API key is being used/valid
+December 2023
+*/ 
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Qualifier;
