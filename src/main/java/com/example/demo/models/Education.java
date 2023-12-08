@@ -1,5 +1,5 @@
 /*  Education.java WikiCareers (Johann Ruiz) Virginia Tech
-<description>
+Implementation of Education table
 December 2023
 */ 
 package com.example.demo.models;

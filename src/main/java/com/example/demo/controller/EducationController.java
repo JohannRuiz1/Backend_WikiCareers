@@ -1,5 +1,5 @@
 /*  EducationController.java WikiCareers (Johann Ruiz) Virginia Tech
-<description>
+Controls the education table
 December 2023
 */ 
 package com.example.demo.controller;

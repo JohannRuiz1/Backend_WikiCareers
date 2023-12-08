@@ -1,5 +1,5 @@
 /*  RiskController.java WikiCareers (Johann Ruiz) Virginia Tech
-<description>
+Controls the risk table
 December 2023
 */ 
 package com.example.demo.controller;

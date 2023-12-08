@@ -1,5 +1,5 @@
 /*  Career.java WikiCareers (Johann Ruiz) Virginia Tech
-<description>
+Implementation of Career table
 December 2023
 */ 
 package com.example.demo.models;

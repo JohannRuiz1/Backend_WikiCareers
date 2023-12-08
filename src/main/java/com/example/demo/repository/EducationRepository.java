@@ -1,5 +1,5 @@
 /*  EducationRepository.java WikiCareers (Johann Ruiz) Virginia Tech
-<description>
+Function declarations for Education 
 December 2023
 */ 
 package com.example.demo.repository;

@@ -1,5 +1,5 @@
 /*  jdbcCareerRepository.java WikiCareers (Johann Ruiz) Virginia Tech
-<description>
+SQL functions for Career 
 December 2023
 */ 
 

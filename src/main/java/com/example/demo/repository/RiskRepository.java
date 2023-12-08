@@ -1,5 +1,5 @@
 /*  RiskRepository.java WikiCareers (Johann Ruiz) Virginia Tech
-<description>
+Function declarations for Risk table
 December 2023
 */ 
 package com.example.demo.repository;

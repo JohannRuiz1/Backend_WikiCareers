@@ -1,5 +1,5 @@
 /*  Risk.java WikiCareers (Johann Ruiz) Virginia Tech
-<description>
+Implementation of Risk table
 December 2023
 */ 
 package com.example.demo.models;

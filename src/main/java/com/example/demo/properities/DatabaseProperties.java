@@ -1,5 +1,5 @@
 /*  DatabaseProperties.java WikiCareers (Johann Ruiz) Virginia Tech
-<description>
+Overhead for the database properties
 December 2023
 */ 
 package com.example.demo.properities;

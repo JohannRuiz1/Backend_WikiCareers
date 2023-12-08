@@ -1,0 +1,60 @@
+2023-11-13 14:47:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = '' [42104-214]
+2023-11-13 14:47:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = '' [42104-214]
+2023-11-13 14:47:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = '' [42104-214]
+2023-11-15 14:37:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = '' [42104-214]
+2023-11-15 14:38:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = '' [42104-214]
+2023-11-15 14:38:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = '' [42104-214]
+2023-11-15 14:38:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = '' [42104-214]
+2023-11-15 14:38:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = '' [42104-214]
+2023-11-15 14:38:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = '' [42104-214]
+2023-11-15 14:42:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = '' [42104-214]
+2023-11-15 14:42:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = '' [42104-214]
+2023-11-15 14:43:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = '' [42104-214]
+2023-11-15 14:44:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = 'firefighter' [42104-214]
+2023-11-15 14:45:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = 'firefighter' [42104-214]
+2023-11-15 14:46:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = 'engineer' [42104-214]
+2023-11-15 15:05:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = 'engineer' [42104-214]
+2023-11-15 15:05:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = 'engineer' [42104-214]
+2023-11-15 15:05:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = 'engineer' [42104-214]
+2023-11-15 15:05:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = 'engineer' [42104-214]
+2023-11-15 15:05:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CAREERS" not found (this database is empty); SQL statement:
+SELECT C.title, C.description, C.pay_range_low, C.pay_range_high, E.education_level, E.years_of_schooling, E.education_description, R.risk_description, R.risk_level FROM Careers C LEFT JOIN Education E ON C.career_id = E.career_id LEFT JOIN Risks R ON C.career_id = R.career_id WHERE C.title = 'firerfighter' [42104-214]

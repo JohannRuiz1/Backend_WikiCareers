@@ -1,5 +1,5 @@
 /*  jbdcRiskRepository.java WikiCareers (Johann Ruiz) Virginia Tech
-<description>
+SQL functions for Risk table 
 December 2023
 */ 
 package com.example.demo.repository;
